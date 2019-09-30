@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 
 import 'package:tutorialcrud/PageForm.dart';
+import 'package:tutorialcrud/PageList.dart';
 
 
 
@@ -63,6 +64,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Colors.redAccent,
                       ),
                     ),
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => new PageList()));
+                    },
                   ),
                 ),
               ],
