@@ -38,6 +38,10 @@ class _PageFormState extends State<PageForm> {
     });
   }
 
+  List<String> _users = ['USER', 'ADMINISTRATOR']; // Option 2
+  String _selecteduser; // Option 2
+  String _user;
+
 
 
   @override
@@ -164,12 +168,20 @@ class _PageFormState extends State<PageForm> {
                         ),),
                       ),
                       SizedBox(height: 10.0,),
-                      new DropdownButton(
-                        isExpanded: true,
-                        hint: new Text('Select User Type'),
-                        onChanged: (newVal) {
 
-                        },
+                      DropdownButton(
+                          isExpanded: true,
+                          hint: new Text('Select User Type'),
+                          value: _selecteduser,
+                          items: _users.map((location){
+                            return DropdownMenuItem(
+                              child: new Text(location),
+                              value: location,
+                            );
+                          }).toList(),
+                          onChanged: (newValue){
+
+                          }
                       ),
                     ],
                   ),
