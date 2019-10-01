@@ -225,6 +225,9 @@ class _PageFormState extends State<PageForm> {
                           onChanged: (newValue){
                             print(newValue);
 
+                            setState(() {
+                              _selectedDepart = newValue;
+                            });
                           },
                         value: _selectedDepart,
                         items: _departLists.map((item){
