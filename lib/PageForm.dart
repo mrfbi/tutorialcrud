@@ -90,6 +90,8 @@ $tuser = $_POST['tuserval'];
 $dep = $_POST['depval'];
 $gender = $_POST['genval'];
     * */
+
+
       var url = "http://www.71slabsolution.com/crud/savedata.php";
 
     final response = await http.post(url,body: {
@@ -121,6 +123,7 @@ $gender = $_POST['genval'];
 
         _isSave = true;
       }
+
 
     }
 
