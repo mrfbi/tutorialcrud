@@ -32,6 +32,13 @@ class _PageFormState extends State<PageForm> {
   }
 
 
+  setSelRadio(int val){
+    setState(() {
+      selectedRadioTile = val;
+    });
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -110,6 +117,7 @@ class _PageFormState extends State<PageForm> {
 
                                 setState(() {
                                   _dt = dtstr;
+                                  //print(_dt);
                                 });
 
                               }
@@ -134,7 +142,7 @@ class _PageFormState extends State<PageForm> {
                         groupValue: selectedRadioTile,
                         onChanged: (val){
 
-
+                          setSelRadio(val);
 
                         },
                         activeColor: Colors.pinkAccent,
@@ -147,7 +155,7 @@ class _PageFormState extends State<PageForm> {
                         value: 1,
                         groupValue: selectedRadioTile,
                         onChanged: (val){
-
+                            setSelRadio(val);
                         },
                         activeColor: Colors.pinkAccent,
                         selected: false,
