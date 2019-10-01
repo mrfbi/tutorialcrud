@@ -27,6 +27,8 @@ class _PageFormState extends State<PageForm> {
 
 
 
+
+
   @override
   void initState() {
     // TODO: implement initState
@@ -73,6 +75,54 @@ class _PageFormState extends State<PageForm> {
   String _user;
 
 
+  TextEditingController fntxt = new TextEditingController();
+  TextEditingController addrtxt = new TextEditingController();
+
+
+
+  Future _saveRecord(BuildContext context) async{
+      //fntxt,addrtxt,_dt,_selectedDepart,_selecteduser,selectedRadioTile
+    /*
+    * $fname = $_POST['fnval'];
+$addr = $_POST['addrval'];
+$dt = $_POST['dt'];
+$tuser = $_POST['tuserval'];
+$dep = $_POST['depval'];
+$gender = $_POST['genval'];
+    * */
+      var url = "http://www.71slabsolution.com/crud/savedata.php";
+
+    final response = await http.post(url,body: {
+      "fnval":fntxt.text,
+      "addrval":addrtxt.text,
+      "dt":_dt,
+      "tuserval":_selecteduser,
+      "depval":_selectedDepart.toString(),
+      "genval":selectedRadioTile.toString(),
+    });
+
+    if(response.statusCode == 200){
+
+      var data = json.decode(response.body);
+
+      if(data['msg'] == 1){
+        print("YEHUUU");
+        setState(() {
+          _isSave = false;
+        });
+      }else if(data['msg'] == 0){
+        print("WEKKK");
+
+        _isSave = true;
+      }
+
+    }
+
+
+
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -84,9 +134,13 @@ class _PageFormState extends State<PageForm> {
         actions: <Widget>[
           new FlatButton(
               onPressed: (){
+                  setState(() {
+                    _isSave = true;
+                  });
 
+                  _saveRecord(context);
               },
-              child: Text('SAVE',style: TextStyle(
+              child:_isSave? new CircularProgressIndicator() :Text('SAVE',style: TextStyle(
                 color: Colors.white,
                 fontSize: 15.0,
               ),),
@@ -102,7 +156,7 @@ class _PageFormState extends State<PageForm> {
                   child: new Column(
                     children: <Widget>[
                       TextFormField(
-                        //controller: fntxt,
+                        controller: fntxt,
                         decoration: InputDecoration(
                           labelText: 'Fullname',
                         ),
@@ -110,7 +164,7 @@ class _PageFormState extends State<PageForm> {
                         keyboardType: TextInputType.text,
                       ),
                       TextFormField(
-                        //controller: fntxt,
+                        controller: addrtxt,
                         decoration: InputDecoration(
                           labelText: 'Address',
                         ),
@@ -231,10 +285,12 @@ class _PageFormState extends State<PageForm> {
                           },
                         value: _selectedDepart,
                         items: _departLists.map((item){
+
                           return DropdownMenuItem(
                               child: new Text(item['DEPT_NAME']),
                               value: item['IDDEP'].toString(),
                           );
+
                         }).toList(),
                       ),
 
