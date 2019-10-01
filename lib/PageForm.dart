@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:async';
+import 'package:async/async.dart';
+import 'dart:io';
 
 
 
@@ -29,6 +33,31 @@ class _PageFormState extends State<PageForm> {
     super.initState();
 
     selectedRadioTile = 0;
+
+    //load json
+    _getAllData();
+  }
+
+  List _departLists = new List();
+
+  //method to feed combobox
+  Future _getAllData() async{
+
+    var url = "http://www.71slabsolution.com/crud/getallcat.php";
+
+    final response = await http.get(url);
+
+    if(response.statusCode == 200){
+        var data = json.decode(response.body);
+
+        print(response.body);
+
+        setState(() {
+          _departLists = data;
+        });
+
+    }
+
   }
 
 
@@ -188,6 +217,16 @@ class _PageFormState extends State<PageForm> {
 
                           }
                       ),
+
+                      DropdownButton(
+                          isExpanded: true,
+                          hint: new Text('Select Department'),
+                          onChanged: (newValue){
+                            print(newValue);
+
+                          }
+                      ),
+
                     ],
                   ),
                 ),
