@@ -180,6 +180,11 @@ class _PageFormState extends State<PageForm> {
                             );
                           }).toList(),
                           onChanged: (newValue){
+                            print(newValue);
+
+                            setState(() {
+                              _selecteduser = newValue;
+                            });
 
                           }
                       ),
