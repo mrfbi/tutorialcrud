@@ -39,6 +39,7 @@ class _PageFormState extends State<PageForm> {
   }
 
   List _departLists = new List();
+  String _selectedDepart;
 
   //method to feed combobox
   Future _getAllData() async{
@@ -224,7 +225,14 @@ class _PageFormState extends State<PageForm> {
                           onChanged: (newValue){
                             print(newValue);
 
-                          }
+                          },
+                        value: _selectedDepart,
+                        items: _departLists.map((item){
+                          return DropdownMenuItem(
+                              child: new Text(item['DEPT_NAME']),
+                              value: item['IDDEP'].toString(),
+                          );
+                        }).toList(),
                       ),
 
                     ],
