@@ -14,10 +14,13 @@ final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
 class _PageFormState extends State<PageForm> {
 
-  DateTime _dtInfo;
+  DateTime _dataInfo;
   String _dt;
 
   int selectedRadioTile;
+
+  bool _isSave = false;
+
 
 
   @override
@@ -72,19 +75,45 @@ class _PageFormState extends State<PageForm> {
                         ),
                         textCapitalization: TextCapitalization.characters,
                         maxLines: 3,
+                        //maxLength: 100,
                       ),
                       SizedBox(height: 20.0,),
                       Text(_dt == null?' - DOB - ':_dt,style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),),
+
                       SizedBox(height: 10.0,),
                       Container(
                         height: 50.0,
                         width: MediaQuery.of(context).size.width,
                           child: RaisedButton(
-                            onPressed: (){
-                              
+                            onPressed: () async{
+
+                              final selectedDate = await showDatePicker(context: context,
+                                  initialDate: DateTime.now().add(Duration(seconds: 1)),
+                                  firstDate: DateTime.now(),
+                                  lastDate: DateTime(2100)
+                              );
+
+
+                              if(selectedDate != null && selectedDate != _dataInfo){
+                                //setState(() {
+                                _dataInfo = selectedDate;
+
+                                List dtlist = _dataInfo.toString().split(" ");
+
+                                String dtstr = dtlist[0].toString();
+
+                                //print(dtstr);
+                                //});
+
+                                setState(() {
+                                  _dt = dtstr;
+                                });
+
+                              }
+
                             },
                             child: Text('Select Date',style: TextStyle(
                               color: Colors.white,
@@ -104,6 +133,8 @@ class _PageFormState extends State<PageForm> {
                         value: 0,
                         groupValue: selectedRadioTile,
                         onChanged: (val){
+
+
 
                         },
                         activeColor: Colors.pinkAccent,
