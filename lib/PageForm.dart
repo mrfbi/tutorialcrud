@@ -83,12 +83,13 @@ class _PageFormState extends State<PageForm> {
   Future _saveRecord(BuildContext context) async{
       //fntxt,addrtxt,_dt,_selectedDepart,_selecteduser,selectedRadioTile
     /*
-    * $fname = $_POST['fnval'];
+    $fname = $_POST['fnval'];
 $addr = $_POST['addrval'];
 $dt = $_POST['dt'];
 $tuser = $_POST['tuserval'];
 $dep = $_POST['depval'];
 $gender = $_POST['genval'];
+
     * */
 
 
