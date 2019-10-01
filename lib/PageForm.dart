@@ -110,6 +110,12 @@ $gender = $_POST['genval'];
         setState(() {
           _isSave = false;
         });
+        
+        _scaffoldKey.currentState.showSnackBar(new SnackBar(backgroundColor:Colors.redAccent,content: new Text('Your data has been saved badigol',style: TextStyle(color: Colors.white),)));
+
+        Timer timer = new Timer(new Duration(seconds: 3), (){
+          Navigator.of(context).pop();
+        });
       }else if(data['msg'] == 0){
         print("WEKKK");
 
