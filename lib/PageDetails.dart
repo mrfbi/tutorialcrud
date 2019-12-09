@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:async';
+
 
 class PageDetails extends StatefulWidget {
   List lists;
@@ -14,26 +18,6 @@ class PageDetails extends StatefulWidget {
 }
 
 class _PageDetailsState extends State<PageDetails> {
-
-  Future _delFunct()async{
-
-    var url = "htpbalalalaa/crud/deletedata.php";
-    //post
-     final response = await http.post(url,body:{
-       "id":widget.lists[widget.index]['IDDATA'],
-
-     });
-
-
-     if(response.statusCode == ){
-
-     }
-
-
-
-
-
-  }
 
 
 
@@ -50,7 +34,7 @@ class _PageDetailsState extends State<PageDetails> {
           ),
           RaisedButton(
               onPressed: (){
-                _delFUnct(context);
+
               }
           ),
 

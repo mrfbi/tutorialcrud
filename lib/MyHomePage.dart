@@ -18,6 +18,16 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: new AppBar(
         title: Text('DASHBOARD'),
         backgroundColor: Colors.deepPurple,
+        actions: <Widget>[
+          FlatButton(
+              onPressed: (){
+
+                Navigator.pushReplacementNamed(context, "/PageLogin");
+
+              },
+              child: Icon(Icons.lock),
+          ),
+        ],
       ),
       body: new Container(
         child: new Column(
